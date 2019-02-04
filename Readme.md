@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Natalia Sevostyanova](https://up.htmlacademy.ru/php/8/user/204543).
-* Наставник: `Неизвестно`.
+* Наставник: `Максим_Деев`.
 
 ---
 
