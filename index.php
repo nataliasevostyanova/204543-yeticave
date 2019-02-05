@@ -4,34 +4,34 @@ $is_auth = rand(0, 1);
 $user_name = 'Наташа'; // укажите здесь ваше имя
 $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 $staff = [
-  0 =>  ['Название' => '2014 Rossignol District Snowboard',
-      'Категория' => 'Доски и лыжи',
-      'Цена' => '10999',
+  0 =>  ['name' => '2014 Rossignol District Snowboard',
+      'category' => 'Доски и лыжи',
+      'start_price' => '10999',
       'url_img'=> 'img/lot-1.jpg'
      ],
-   1 => ['Название' => 'DC Ply Mens 2016/2017 Snowboard',
-      'Категория' => 'Доски и лыжи',
-      'Цена' => '159999',
+   1 => ['name' => 'DC Ply Mens 2016/2017 Snowboard',
+      'category' => 'Доски и лыжи',
+      'start_price' => '159999',
       'url_img'=> 'img/lot-2.jpg'
      ],
-   2 => ['Название' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-      'Категория' => 'Крепления',
-      'pЦенаrice' => '8000',
+   2 => ['name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
+      'category' => 'Крепления',
+      'start_price' => '8000',
       'url_img'=> 'img/lot-3.jpg'
      ],
-    3 =>['Название' => 'Ботинки для сноуборда DC Mutiny Charocal',
-      'Категория' => 'Ботинки',
-      'Цена' => '10999',
+    3 =>['name' => 'Ботинки для сноуборда DC Mutiny Charocal',
+      'category' => 'Ботинки',
+      'start_price' => '10999',
       'url_img'=> 'img/lot-4.jpg'
      ],
-     4 =>['Название' => 'Куртка для сноуборда DC Mutiny Charocal',
-      'Категория' => 'Одежда',
-      'Цена' => '7500',
+     4 =>['name' => 'Куртка для сноуборда DC Mutiny Charocal',
+      'category' => 'Одежда',
+      'start_price' => '7500',
       'url_img'=> 'img/lot-5.jpg'
      ], 
-     5 =>['Название' => 'Маска Oakley Canopy',
-      'Категория' => 'Разное',
-      'Цена' => '5400',
+     5 =>['name' => 'Маска Oakley Canopy',
+      'category' => 'Разное',
+      'start_price' => '5400',
       'url_img'=> 'img/lot-6.jpg'
      ] 
 ];
@@ -93,11 +93,20 @@ $staff = [
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
+         <?php 
+         $index = 0;
+         $num = count($cats);
+
+         while($index < $num): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">Имя категории</a>
-            </li>
+                <a class="promo__link" href="pages/all-lots.html">
+                    <?php print($cats[$index]);?>
+                </a>
+                <?php $index++; ?>
+            <?php endwhile; ?>
         </ul>
     </section>
+    
     <section class="lots">
         <div class="lots__header">
             <h2>Открытые лоты</h2>
@@ -131,8 +140,16 @@ $staff = [
     <nav class="nav">
         <ul class="nav__list container">
             <!--заполните этот список из массива категорий-->
+            <?php 
+         $index = 0;
+         $num = count($cats);
+
+         while($index < $num): ?>
             <li class="nav__item">
-                <a href="pages/all-lots.html">Название категории</a>
+                <a href="pages/all-lots.html"><?php print($cats[$index]);?>
+                </a>
+            <?php $index++; ?>
+            <?php endwhile; ?>
             </li>
         </ul>
     </nav>
