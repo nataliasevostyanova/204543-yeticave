@@ -5,7 +5,7 @@ $user_name = 'Наташа'; // укажите здесь ваше имя
 $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 $name;
 $category;
-
+$start_price = 9098;
 $staff = [
   0 =>  ['name' => '2014 Rossignol District Snowboard',
       'category' => 'Доски и лыжи',
@@ -38,6 +38,7 @@ $staff = [
       'url_img'=> 'img/lot-6.jpg'
      ] 
 ];
+require_once("usefunction.php");
 ?> 
 
 
@@ -102,7 +103,7 @@ $staff = [
                 <a class="promo__link" href="pages/all-lots.html">
                     <?php print($cats[$index]);?>
                 </a>
-                <?php $index++; ?>
+                <?php $index++; ?></li>
          <?endwhile?>
         </ul>
     </section>
@@ -125,7 +126,7 @@ $staff = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$item['start_price'];?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=formatPrice($start_price);?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
