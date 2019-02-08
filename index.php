@@ -5,7 +5,7 @@ $user_name = 'Наташа'; // укажите здесь ваше имя
 $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 $name;
 $category;
-$start_price = 9098;
+
 $staff = [
   0 =>  ['name' => '2014 Rossignol District Snowboard',
       'category' => 'Доски и лыжи',
@@ -32,15 +32,22 @@ $staff = [
       'start_price' => '7500',
       'url_img'=> 'img/lot-5.jpg'
      ], 
-     5 =>['name' => 'Маска Oakley Canopy',
+  5 =>['name' => 'Маска Oakley Canopy',
       'category' => 'Разное',
       'start_price' => '5400',
       'url_img'=> 'img/lot-6.jpg'
      ] 
 ];
-require_once("usefunction.php");
-?> 
 
+
+/* функция формата цены */
+ function formatPrice($start_price){
+
+   $result = number_format($start_price, 0, ' ', ' ');
+   $price_in_rubl = '&nbsp'.$result.'&nbsp'.'&#8381';
+    return($price_in_rubl);
+}
+?> 
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -108,17 +115,17 @@ require_once("usefunction.php");
         </ul>
     </section>
 
- <!-- лоты объявлений массива $staff  start-->   
+<!-- лоты объявлений массива $staff  start-->   
     <section class="lots">
         <div class="lots__header">
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <!--заполните этот список из массива с товарами-->
+<!-- список из массива с товарами-->
         <?php foreach($staff as $key => $item):?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?=$item['url_img'];?>" width="350" height="260" alt="">
+                   <img src="<?=$item['url_img'];?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?=$item['category'];?></span>
@@ -126,7 +133,10 @@ require_once("usefunction.php");
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=formatPrice($start_price);?><b class="rub">р</b></span>
+                            <!-- Макс. <span class="lot__cost"><?=formatPrice($item['start_price']);?></span> -->
+
+                            <span class="lot__cost"><?=formatPrice($item['start_price']);?><!--<b class="rub">р</b></span>-->
+
                         </div>
                         <div class="lot__timer timer">
                             12:23
