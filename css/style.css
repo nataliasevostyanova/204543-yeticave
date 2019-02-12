@@ -42,6 +42,7 @@ body {
   margin-bottom: -202px;
   margin-left: 35px;
   margin-right: 20px;
+  
 }
 
 .page-wrapper::after {
@@ -545,6 +546,7 @@ main.container {
 
 .lots {
   padding-top: 50px;
+
 }
 
 .lots__header {
