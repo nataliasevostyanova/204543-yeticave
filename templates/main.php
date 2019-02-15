@@ -1,4 +1,7 @@
-<!-- содержимое тега main-->
+<?php
+require_once('data.php');
+require_once('functions.php');
+?>
 
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -6,7 +9,7 @@
         <ul class="promo__list">
              <!--заполните этот список из массива категорий-->
          <?php 
-     $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+    $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
         /*if(is_array($cats)){
         print('Да, это массив');
            }
@@ -61,18 +64,8 @@
 
                         </div>
                         <div class="lot__timer timer">
-                          <?php 
-                          date_default_timezone_set('Europe/Moscow');
-                          $just_t = date('U');
-                          $end_tu = strtotime("tomorrow midnight");
                           
-                          $diff_t = $end_tu -$just_t;
-                          $lost_tH = $diff_t/3600;
-                          $lost_tHH = floor($lost_tH);
-                          $lost_tM = floor(($diff_t%3600)/60);
-                          
-                          print ($lost_tHH.' час. '.$lost_tM.' мин.' );
-                          ?>
+                          <?=endTime();?>
 
                         </div>
                     </div>

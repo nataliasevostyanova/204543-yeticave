@@ -33,4 +33,18 @@ function filt_data($inpdata) {
 
 }
 
-?>
+function endTime(){
+      date_default_timezone_set('Europe/Moscow');
+      $just_t = date('U');
+      $end_tu = strtotime("tomorrow midnight");
+      
+      $diff_t = $end_tu -$just_t;
+      $lost_tH = $diff_t/3600;
+      $lost_tHH = floor($lost_tH);
+      $lost_tM = floor(($diff_t%3600)/60);
+      
+      /*print ($lost_tHH.' час. '.$lost_tM.' мин.' );*/
+    return ($lost_tHH.' час. '.$lost_tM.' мин.');
+    }
+      ?>
+
