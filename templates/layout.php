@@ -1,3 +1,7 @@
+<?php
+require_once('data.php');
+require_once('functions.php');
+?>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -56,7 +60,7 @@
        <ul class="nav__list container">
           
             <?php
-         $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];    
+        /* $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];  */  
          $index = 0;
          $num = count($cats);
 
