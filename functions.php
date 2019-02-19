@@ -47,7 +47,7 @@ function filt_data($inpdata) {
     return $text;
 
 }
-
+ 
 function endTime(){
       date_default_timezone_set('Europe/Moscow');
       $just_t = date('U');
@@ -61,7 +61,4 @@ function endTime(){
     }
     
 
-
-
-      ?>
-
+?>

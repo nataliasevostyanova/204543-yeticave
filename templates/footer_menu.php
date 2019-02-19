@@ -1,0 +1,17 @@
+
+/* меню футера */
+       <ul class="nav__list container">
+          
+            <?php
+       
+            $index = 0;
+            $num = count($cats);
+
+            while($index < $num): ?>
+                <li class="nav__item">
+                    <a href="pages/all-lots.html"><?php print($cats[$index]);?>
+                    </a>
+                <?php $index++; ?>
+            <?php endwhile; ?>
+                </li>
+        </ul> 

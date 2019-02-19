@@ -10,7 +10,7 @@ if ($link == false) {
 print("Ошибка подключения: " . mysqli_connect_error());
 }
 else {
-print("Соединение установлено");
+print("Соединение установлено;");
 }
 
 ?>

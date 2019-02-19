@@ -10,7 +10,7 @@ $result = mysqli_query($link, $sql);
               $error = mysql_error($link);
               print("Ошибка MySQL: ". $error);
             }
-print($records_count = mysqli_num_rows($result));
+print($records_count = mysqli_num_rows($result).';');
   
 $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -18,10 +18,10 @@ $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $staff = $row;
 
 if(is_array($staff)){
-  print("да, это массив");
+  print("да, 'staff' массив;");
 }
 else{
-  print("Нет, это не массив");
+  print("Нет, 'staff' не массив;");
 }
 
 
@@ -32,7 +32,7 @@ $result = mysqli_query($link, $sql);
               $error = mysql_error($link);
               print("Ошибка MySQL: ". $error);
             }
-print($records_count = mysqli_num_rows($result));
+print($records_count = mysqli_num_rows($result).';');
   
 $row = mysqli_fetch_all($result);
 
@@ -40,17 +40,14 @@ $row = mysqli_fetch_all($result);
 $cats = $row;
 
 if(is_array($cats)){
-  print("да, это массив");
+  print("да, 'cats' массив;");
 }
 else{
-  print("Нет, это не массив");
+  print("Нет, 'cats' не массив;");
 }
 
 $is_auth = rand(0, 1);
 $user_name = 'Наташа'; // укажите здесь ваше имя
-/*$name;
-$category;
-$tpl_name;*/
 
 
 ?>
