@@ -56,7 +56,7 @@ require_once('functions.php');
 <!-- FOOTER-->
 <footer class="main-footer">
     <nav class="nav">
-      <?=$f_m;?>
+      <?=include('footer_menu.php');?>
     </nav>
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">

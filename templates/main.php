@@ -7,7 +7,7 @@ require_once('functions.php');
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
              <!--список из массива категорий-->
-         <?=$h_m;?>
+         <?=include('header_menu.php');?>
         </ul>
     </section>
 
