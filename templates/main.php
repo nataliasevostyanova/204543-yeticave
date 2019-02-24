@@ -9,8 +9,7 @@ require_once('functions.php');
         <ul class="promo__list">
              <!--заполните этот список из массива категорий-->
          <?php 
-   /* $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];*/
-        /*if(is_array($cats)){
+           /*if(is_array($cats)){
         print('Да, это массив');
            }
         else {
