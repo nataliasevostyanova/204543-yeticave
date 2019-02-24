@@ -58,19 +58,18 @@ require_once('functions.php');
 <footer class="main-footer">
      <nav class="nav">
        <ul class="nav__list container">
-          
-            <?php
-        /* $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];  */  
-         $index = 0;
-         $num = count($cats);
+         <?php
+       /*$cats= ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];*/
+            $index = 0;
+            $num = count($cats);
 
-         while($index < $num): ?>
-            <li class="nav__item">
-                <a href="pages/all-lots.html"><?php print($cats[$index]);?>
-                </a>
-            <?php $index++; ?>
+            while($index < $num): ?>
+                <li class="nav__item">
+                    <a href="pages/all-lots.html"><?php print($cats[$index]);?>
+                    </a>
+                <?php $index++; ?>
             <?php endwhile; ?>
-            </li>
+                </li>
         </ul> 
      </nav>
     <div class="main-footer__bottom container">

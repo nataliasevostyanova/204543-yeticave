@@ -45,4 +45,3 @@ function endTime(){
        return ($lost_tHH.' час. '.$lost_tM.' мин.');
     }
       ?>
-
