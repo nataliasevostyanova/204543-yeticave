@@ -1,5 +1,4 @@
 <?php
-require_once('data.php');
 require_once('functions.php');
 ?>
 
@@ -7,27 +6,10 @@ require_once('functions.php');
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-             <!--заполните этот список из массива категорий-->
-         <?php 
-    $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
-        /*if(is_array($cats)){
-        print('Да, это массив');
-           }
-        else {
-            $var_tex = gettype($cats);
-            print($var_tex);
-          }*/
-      
-      $index = 0;
-      $num = count($cats);
 
-         while($index < $num): ?>
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">
-                    <?php print($cats[$index]);?>
-                </a>
-                <?php $index++; ?></li>
-         <?endwhile?>
+             <!--список из массива категорий-->
+         <?=include('header_menu.php');?>
+
         </ul>
     </section>
 
@@ -36,9 +18,9 @@ require_once('functions.php');
         <div class="lots__header">
             <h2>Открытые лоты</h2>
         </div>
-        <ul class="lots__list">
+<!-- список лотов из массива с товарами-->     
+     <ul class="lots__list">
 
-<!-- список лотов из массива с товарами-->
  <?php 
     /*if(is_array($staff)){
       print('Да, это массив');
@@ -46,14 +28,14 @@ require_once('functions.php');
     else {
       $var_tex = gettype($staff);
       print($var_tex);
-    }*/
-
+    }*/        
       
-        foreach($staff as $key => $item):?>
-            <li class="lots__item lot">
-                <div class="lot__image">
-                   <img src="<?=$item['url_img'];?>" width="350" height="260" alt="">
-                </div>
+     foreach($staff as $key => $item):?>
+        <li class="lots__item lot">
+           <div class="lot__image">
+                <img src="<?=$item['img_url'];?>" width="350" height="260" alt="">
+           </div>
+
                 <div class="lot__info">
                     <span class="lot__category"><?=$item['category'];?></span>
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=filt_data($item['name']);?></a></h3>
@@ -71,7 +53,9 @@ require_once('functions.php');
                     </div>
                 </div>
             </li>
-            <?endforeach;?> 
-            
+
+          
+            <?endforeach;?>
+
         </ul>
     </section>

@@ -1,6 +1,7 @@
-CREATE DATABASE Yeticave_pro
+/*CREATE DATABASE Yeticave_pro
   DEFAULT CHARACTER SET UTF8
-  DEFAULT COLLATE utf8_general_ci;
+  DEFAULT COLLATE utf8_general_ci;*/
+
 
 USE Yeticave_pro;
 

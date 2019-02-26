@@ -1,8 +1,7 @@
 <?php
-require_once('data.php');
+
 require_once('functions.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,23 +55,9 @@ require_once('functions.php');
 </div>
 <!-- FOOTER-->
 <footer class="main-footer">
-     <nav class="nav">
-       <ul class="nav__list container">
-          
-            <?php
-        /* $cats = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];  */  
-         $index = 0;
-         $num = count($cats);
-
-         while($index < $num): ?>
-            <li class="nav__item">
-                <a href="pages/all-lots.html"><?php print($cats[$index]);?>
-                </a>
-            <?php $index++; ?>
-            <?php endwhile; ?>
-            </li>
-        </ul> 
-     </nav>
+    <nav class="nav">
+      <?=include('footer_menu.php');?>
+    </nav>
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>
