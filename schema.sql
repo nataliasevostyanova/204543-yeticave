@@ -2,6 +2,7 @@
   DEFAULT CHARACTER SET UTF8
   DEFAULT COLLATE utf8_general_ci;*/
 
+
 USE Yeticave_pro;
 
 CREATE TABLE users (

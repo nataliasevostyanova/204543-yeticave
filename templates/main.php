@@ -6,8 +6,10 @@ require_once('functions.php');
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
+
              <!--список из массива категорий-->
          <?=include('header_menu.php');?>
+
         </ul>
     </section>
 
@@ -18,6 +20,7 @@ require_once('functions.php');
         </div>
 <!-- список лотов из массива с товарами-->     
      <ul class="lots__list">
+
  <?php 
     /*if(is_array($staff)){
       print('Да, это массив');
@@ -32,6 +35,7 @@ require_once('functions.php');
            <div class="lot__image">
                 <img src="<?=$item['img_url'];?>" width="350" height="260" alt="">
            </div>
+
                 <div class="lot__info">
                     <span class="lot__category"><?=$item['category'];?></span>
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=filt_data($item['name']);?></a></h3>
@@ -49,7 +53,9 @@ require_once('functions.php');
                     </div>
                 </div>
             </li>
+
           
             <?endforeach;?>
+
         </ul>
     </section>

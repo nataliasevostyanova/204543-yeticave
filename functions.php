@@ -33,6 +33,7 @@ function render_template($tpl_name, $cats) {
     return $result;
 }
 
+
 /* функция формата цены */
  function formatPrice($start_price){
 
@@ -47,7 +48,7 @@ function filt_data($inpdata) {
     return $text;
 
 }
- 
+
 function endTime(){
       date_default_timezone_set('Europe/Moscow');
       $just_t = date('U');
@@ -59,6 +60,8 @@ function endTime(){
       $lost_tM = floor(($diff_t%3600)/60);
        return ($lost_tHH.' час. '.$lost_tM.' мин.');
     }
+
     
 
 ?>
+

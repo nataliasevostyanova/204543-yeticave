@@ -1,5 +1,6 @@
 USE Yeticave_pro;
 
+
 INSERT INTO cats (category) VALUES ('Доски и лыжи');
 INSERT INTO cats (category) VALUES ('Крепления'); 
 INSERT INTO cats (category) VALUES ('Ботинки');
@@ -33,8 +34,10 @@ INSERT INTO rates (user_id,lot_id, r_summ) VALUES ('2','4','11299');
 INSERT INTO rates (user_id,lot_id, r_summ) VALUES ('1','6','5600');
 INSERT INTO rates (user_id,lot_id, r_summ) VALUES ('2','6','5700');
 
+
 /* получить все категории */
 SELECT category FROM cats;
+
 
 /*получить открытые лоты вместе с названиями категорий - работает*/
 SELECT name, description, start-price, cat_id FROM lots l 
@@ -50,5 +53,6 @@ ON l.cat_id = c.id;
 UPDATE lots SET name = 'Куртка мужская QuickSilver' WHERE id = 5;
 
 /* получить список свежих ставок по id лота - работает* /
+
 SELECT * FROM rates WHERE lot_id = 2 ORDER BY r_date
 LIMIT 5;
