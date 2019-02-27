@@ -1,15 +1,15 @@
-<?php 
-reqiure('data.php');
-reqiure('functions.php');
+<?php
+require_once('data.php'); 
+require_once('functions.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title><?=filt_data($l_inf['name']);?></title>
-  <link href="../css/normalize.min.css" rel="stylesheet">
-  <link href="../css/style.css" rel="stylesheet">
+  <title><?=$lot_title;?></title>
+  <link href="css/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -67,7 +67,7 @@ reqiure('functions.php');
     </nav>
 <!-- контейнер лота -->
       <section class="lot-item container">
-    <?=$lot_info;?> /* вставка информации о лоте */
+    <?=$lot_info;?> <!-- вставка информации о лоте -->
       </section> 
   </main>
 

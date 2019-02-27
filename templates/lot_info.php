@@ -1,19 +1,31 @@
 <?php
 
-require('data.php')
-include('functions.php')
-
-
+require_once('data.php');
+require_once('functions.php');
 ?>
 
-<h2><?=filt_data($l_inf['name']);?></h2> /*имя лота*/
+<?php 
+
+if(isset($l_inf)){
+  $lot_name = $l_inf['name'];
+  $lot_imgurl = $l_inf['img_url'];
+  $lot_category = $l_inf['category'];
+  $lot_description = $l_inf['description'];
+  $lot_start_price = $l_inf['start_price'];
+  }
+else {
+  print('No data for lot');
+  }
+?>
+
+<h2><?=filt_data($lot_name);?></h2> <!--имя лота-->
       <div class="lot-item__content">
         <div class="lot-item__left">
           <div class="lot-item__image">
-            <img src="<?=$l_inf['url_img'];?>" width="730" height="548" alt="<?=filt_data($l_inf['name']);?>">
+            <img src="<?=$lot_imgurl;?>" width="730" height="548" alt="">
           </div>
-          <p class="lot-item__category">Категория: <span><?=$l_inf['category'];?></span></p>
-          <p class="lot-item__description"><?=filt_data($l_inf['description']);?></p>
+          <p class="lot-item__category">Категория: <span><?=$lot_category;?></span></p>
+          <p class="lot-item__description"><?=filt_data($lot_description);?></p>
         </div>
         <div class="lot-item__right">
           <div class="lot-item__state">
@@ -23,76 +35,15 @@ include('functions.php')
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">
                 <span class="lot-item__amount">Текущая цена</span>
- /* пока в "Текущей цене" стоит  стартовая цена */
-                <span class="lot-item__cost"><?=formatPrice(filt_data($l_inf['start_price']));?></span>
+ 
+                <span class="lot-item__cost"><?=formatPrice(filt_data($lot_start_price));?></span>
               </div>
               <div class="lot-item__min-cost">
                 Мин. ставка <span>12 000 р</span>
               </div>
             </div>
-        <!--   <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
-              <p class="lot-item__form-item form__item form__item--invalid">
-                <label for="cost">Ваша ставка</label>
-                <input id="cost" type="text" name="cost" placeholder="12 000">
-                <span class="form__error">Введите наименование лота</span>
-              </p>
-              <button type="submit" class="button">Сделать ставку</button>
-            </form>-->
+              <!-- форма для создания ставки -->
           </div>
-          <!--<div class="history">
-            <h3>История ставок (<span>10</span>)</h3>
-            <table class="history__list">
-              <tr class="history__item">
-                <td class="history__name">Иван</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">5 минут назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Константин</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">20 минут назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Евгений</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">Час назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Игорь</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 08:21</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Енакентий</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 13:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Семён</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 12:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Илья</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 10:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Енакентий</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 13:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Семён</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 12:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Илья</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 10:20</td>
-              </tr>
-            </table>
-          </div>-->
+              <!-- история ставок -->
         </div>
       </div>
