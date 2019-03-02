@@ -14,7 +14,7 @@ if(isset($l_inf)){
   $lot_start_price = $l_inf['start_price'];
   }
 else {
-  print('No data for lot');
+  print('НЕТ ТАКОГО ЛОТА');
   }
 ?>
 
@@ -36,7 +36,7 @@ else {
               <div class="lot-item__rate">
                 <span class="lot-item__amount">Текущая цена</span>
  
-                <span class="lot-item__cost"><?=formatPrice(filt_data($lot_start_price));?></span>
+                <span class="lot-item__cost"><?=filt_data(formatPrice($lot_start_price));?></span>
               </div>
               <div class="lot-item__min-cost">
                 Мин. ставка <span>12 000 р</span>
