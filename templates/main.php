@@ -1,5 +1,4 @@
 <?php
-require_once('data.php');
 require_once('functions.php');
 ?>
 
@@ -22,10 +21,12 @@ require_once('functions.php');
    </ul>
  </section>
 
+
 <!-- лоты объявлений массива $staff  start-->   
  <section class="lots">
     <div class="lots__header">
             <h2>Открытые лоты</h2>
+
     </div>
     <ul class="lots__list"> <!-- список лотов из массива $staff-->
    <?php 
@@ -51,3 +52,5 @@ require_once('functions.php');
         <?endforeach;?> 
   </ul>
 </section>
+
+

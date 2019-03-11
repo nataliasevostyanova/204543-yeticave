@@ -17,6 +17,22 @@ function include_template($tpl_name, $staff) {
     $result = ob_get_clean();
     return $result;
 }
+function render_template($tpl_name, $cats) {
+    $tpl_name = 'templates/' . $tpl_name;
+    $result = '';
+
+    if (!is_readable($tpl_name)) {
+        return $result;
+    }
+    ob_start();
+    extract($cats);
+
+    require $tpl_name;
+
+    $result = ob_get_clean();
+    return $result;
+}
+
 
 /* функция формата цены */
  function formatPrice($start_price){
@@ -44,4 +60,6 @@ function endTime(){
       $lost_tM = floor(($diff_t%3600)/60);
        return ($lost_tHH.' час. '.$lost_tM.' мин.');
     }
-      ?>
+
+?>
+

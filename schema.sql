@@ -13,6 +13,7 @@ contact_phone CHAR(12) NOT NULL UNIQUE,
 avatar_url VARCHAR(200),
 user_name CHAR(120) NOT NULL 
 );
+
 CREATE TABLE lots (
 id_lot INT AUTO_INCREMENT PRIMARY KEY,
 creation_date TIMESTAMP DEFAULT TIMESTAMP,
@@ -24,8 +25,9 @@ start_price INT(11) NOT NULL,
 end_time DATETIME,
 rate_step INT(11)NOT NULL,
 user_id INT(11) NOT NULL,
-status BOOLEAN,
 act_price INT(11) DEFAULT NULL
+
+
 );
 
 CREATE TABLE cats (

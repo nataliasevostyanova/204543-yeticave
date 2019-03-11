@@ -1,8 +1,7 @@
 <?php
-require_once('data.php');
+
 require_once('functions.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,6 +55,7 @@ require_once('functions.php');
 </div>
 <!-- FOOTER-->
 <footer class="main-footer">
+
      <nav class="nav">
        <ul class="nav__list container">
          <?php
@@ -72,6 +72,7 @@ require_once('functions.php');
                 </li>
         </ul> 
      </nav>
+
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>
