@@ -35,23 +35,23 @@ $result = mysqli_query($link, $sql);
 
   
 $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-foreach($row as $item)
-  {
-    $cats[] = $item['category'];
-  }
-
+ 
+foreach ($row as $item) 
+{
+$cats[] = $item['category'];
+}
 
 /*if(is_array($cats)){
   print("да, 'cats' массив;");
   print('<pre>');
   var_dump($cats);
   print('</pre>');
-
 }
 else{
   print("Нет, 'cats' не массив;");
-
 }*/
+
+
 
 $is_auth = rand(0, 1);
 $user_name = 'Наташа';
