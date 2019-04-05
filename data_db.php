@@ -32,8 +32,7 @@ $result = mysqli_query($link, $sql);
               $error = mysql_error($link);
               print("Ошибка MySQL: ". $error);
             }
-
-  
+ 
 $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
  
 foreach ($row as $item) 

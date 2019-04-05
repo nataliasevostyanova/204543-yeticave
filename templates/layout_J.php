@@ -25,7 +25,7 @@
       <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>
       <nav class="user-menu">
         <div class="user-menu__logged">
-          <p>Константин</p>
+          <p>Наталия</p>
           <a href="login.html">Выйти</a>
         </div>
       </nav>
@@ -42,21 +42,22 @@
 	<!-- bottom menu -->
 	  <nav class="nav">
 	    <ul class="nav__list container">
-	      <?php               
-	      $index = 0;
-	      $num = count($cats);
+	    <?php               
+      $index = 0;
+      $num = count($cats);
 
-	         while($index < $num): ?>
-	            <li class="promo__item promo__item--boards">
-	                <a class="promo__link" href="pages/all-lots.html">
-	                  <?=print($cats[$index]);?>
-	                </a>
-	                <?php $index++; ?></li>
-	         <?endwhile?>
+         while($index < $num): ?>
+            <li class="promo__item promo__item--boards">
+                <a class="promo__link" href="pages/all-lots.html">
+                  <?=$cats[$index];?>
+                </a>
+                <?php $index++; ?></li>
+         <?endwhile?>
+
 	    </ul>
 	  </nav>
 	  <div class="main-footer__bottom container">
-	  	<?php require_once footer_bottom.php; ?>
+	  	<?php require_once('footer_bottom.php'); ?>
 	  </div>
 </footer>
 
