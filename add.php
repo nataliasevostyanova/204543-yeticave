@@ -7,17 +7,15 @@ $add_lot = include_template('layout_addlot.php', ['cats' => $cats]); /*пуст�
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			
 				$lot = $_POST;
-				print('<pre> Что получили из формы:  ');
+				/*print('<pre> Что получили из формы:  ');
 			    var_dump($_POST);
-			    print('</pre>');
+			    print('</pre>');*/
 		/*поля, необходимые для заполнения*/
 				$required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date']; 
 		/*заголовки для пользователя*/
 				$dict = ['lot-name' => 'Наименование', 'category' => 'Категория' , 'message' =>'Описание', 'lot-rate' => 'Начальная цена', 'lot-step' => 'Шаг ставки', 'lot-date' => 'Дата окончания торгов']; 
 		/*массив ошибок*/
 				$errors = [];
-
-
 		/*проверка - заполнены ли поля*/
 			foreach($required as $key){
 				if(empty($lot[$key])){
@@ -25,42 +23,37 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 				}
 			}
 
-				print('<pre> Что не заполнено:  ');
-			    var_dump($errors);
-			    print('</pre>');
-				
-			/*проверка типа полей массива */
+		/*проверка типа полей массива */
 			foreach($lot as $key => $value){
-			
-							
-					if($key == 'category'){
+						
+				if($key == 'category'){
 						if(!isset($value) || $value = 'Выберите категорию'){
 							$error = $dict['category']. ' не выбрана';
 						}
 					}
 				
-
-					if($key == 'lot-rate'){
+				if($key == 'lot-rate'){
 						if(!isset($value) || gettype($value) !== integer){
 							$error = $dict['lot-rate']. 'должна быть целым числом';
 						}
 					}
-					if($key == 'lot-step'){
+
+				if($key == 'lot-step'){
 						if(!isset($value) || gettype($value) !== integer){
 							$error = $dict['lot-step']. 'должен быть целым числом';
 						}
 					}
-					
-					if($key == 'lot-step'){
+				
+				if($key == 'lot-step'){
 						if(check_date_format($value)){
 							$error = $dict['lot-date']. 'должна быть в формате дд.мм.гггг';
 					}
-					} // end проверки полей
-				}//endforeach
+				} // end проверки полей
+			}//endforeach
 
-				print('<pre> Ошибки заполнения:  ');
+				/*print('<pre> Ошибки заполнения:  ');
 			    var_dump($errors);
-			    print('</pre>');
+			    print('</pre>');*/
 						
 				if(count($errors)){
 						$add_lot = include_template('layout_addlot.php', ['cats' => $cats, 'lot' => $lot,'dict' => $dict,'errors' => $errors,]);/*показываем form--invalid и ошибки, если есть*/

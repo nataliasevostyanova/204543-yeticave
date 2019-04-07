@@ -72,12 +72,12 @@
 <!--категория -->
         
         <?php $classname = isset($errors['category']) ?  "form__item--invalid" : "";
-              $value = isset($lot['category']) ? $lot['category'] : ""; ?>
-         <div class="form__item <?=$classname;?>">
-          
+              $value = isset($lot['category']) ? $lot['category'] : "Выберите категорию"; ?>
+        
+        <div class="form__item <?=$classname;?>">
           <label for="category">Категория</label>
-          <select id="category" name="category" value="" required>
-               <?if(!isset($lot['category'])):?>  
+          <select id="category" name="category" required>
+                <option><?=$value;?></option>
                 <option selected disabled>Выберите категорию</option>
                     <?php 
                       $index = 0;
@@ -86,10 +86,7 @@
                         <option> <?php print($cats[$index]);?></option>
                         <?$index++;?>
                       <?endwhile?>
-               <?else:?>
-                    <option><?=$value;?></option> 
-               <?endif?>   
-          </select>
+            </select>
           <span class="form__error">Нужно выбрать категорию</span>
         </div>
     </div>
