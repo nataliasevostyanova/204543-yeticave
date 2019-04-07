@@ -1,7 +1,7 @@
 <?php
 
-require_once('data_db.php');
-require_once('functions_01.php');
+require_once('data.php');
+require_once('functions.php');
 ?>
 
 <?php 

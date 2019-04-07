@@ -1,7 +1,7 @@
 <?php
 
-require_once('data_db.php');       /*подключаем БД и данные запросов*/
-require_once('functions_01.php');  /*подключаем функции*/
+require_once('data.php');       /*подключаем БД и данные запросов*/
+require_once('functions.php');  /*подключаем функции*/
 
 if(isset($_GET['id_lot'])){
   $lot_id = $_GET['id_lot'];
