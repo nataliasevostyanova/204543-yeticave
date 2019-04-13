@@ -94,7 +94,9 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
 
     return $stmt;
 }
-/*функция получения записей из БД */
+/* функция получения записей из БД 
+ * возвращает данные запросы в виде ассоц.массива
+ */
 function db_fetch_data($link, $sql, $data = []) {
 
     $result = [];
@@ -108,7 +110,10 @@ function db_fetch_data($link, $sql, $data = []) {
     return $result;
 } 
 
-/*функция добавления новой записи в БД*/
+/**функция добавления новой записи в БД
+  *вносит данные в БД
+  *возвращает id внесенной записи
+*/
 function db_insert_data($link, $sql, $data = []) {
 
     $stmt = db_get_prepare_stmt($link, $sql, $data);
