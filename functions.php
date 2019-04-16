@@ -45,6 +45,21 @@ function endTime(){
        return ($lost_tHH.' час. '.$lost_tM.' мин.');
     }
 
+/** функция для перемещения файла изображения из временной папки в рабочую*/   
+
+function remove_image($path, $tmp_name) {
+    // Разберем путь файла на составляющие
+    $path = pathinfo($path);
+
+    // Назначаем изображению уникальное имя
+    $uniq_path = 'img/' . uniqid() . '.' . $path['extension'];
+
+    // Перемещаем изображение из временной директории
+    move_uploaded_file($tmp_name, $uniq_path);
+
+    // Вернем название нового файла, чтобы верно прописать в БД путь к изображению
+    return $uniq_path;
+}
     
 /**
  * Проверяет, что переданная дата соответствует формату ДД.ММ.ГГГГ
@@ -91,9 +106,10 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
         $func = 'mysqli_stmt_bind_param';
         $func(...$values);
     }
-
     return $stmt;
 }
+
+
 /* функция получения записей из БД 
  * возвращает данные запросы в виде ассоц.массива
  */
