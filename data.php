@@ -39,19 +39,3 @@ foreach ($row as $item)
 {
 $cats[] = $item['category'];
 }
-
-/*if(is_array($cats)){
-  print("да, 'cats' массив;");
-  print('<pre>');
-  var_dump($cats);
-  print('</pre>');
-}
-else{
-  print("Нет, 'cats' не массив;");
-}*/
-
-
-
-$is_auth = rand(0, 1);
-$user_name = 'Наташа';
-?> 
