@@ -26,7 +26,7 @@ require_once('functions.php');
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form> 
-      <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>
+      <a class="main-header__add-lot button" href="add_lot.php">Добавить лот</a>
 <!-- вход/регистрация -->
       <nav class="user-menu">
         <ul class="user-menu__list">
@@ -45,50 +45,21 @@ require_once('functions.php');
 <!-- header menu -->
     <nav class="nav">
       <ul class="nav__list container">
-        <li class="nav__item">
-          <a href="all-lots.html">Доски и лыжи</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Крепления</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Ботинки</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Одежда</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Инструменты</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Разное</a>
-        </li>
+        <?php require_once('cat_menu.php'); ?>
       </ul>
     </nav>
 <!-- контейнер лота -->
       <section class="lot-item container">
-    <?=$lot_info;?> <!-- вставка информации о лоте -->
+    <?=$lot_block;?> <!-- вставка блока информации о лоте -->
       </section> 
   </main>
-
 </div>
 
 <footer class="main-footer">
   <!-- bottom menu -->
     <nav class="nav">
       <ul class="nav__list container">
-      <?php               
-      $index = 0;
-      $num = count($cats);
-
-         while($index < $num): ?>
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">
-                  <?=$cats[$index];?>
-                </a>
-                <?php $index++; ?></li>
-         <?endwhile?>
-
+      <?php require_once('cat_menu.php'); ?>
       </ul>
     </nav>
     <div class="main-footer__bottom container">

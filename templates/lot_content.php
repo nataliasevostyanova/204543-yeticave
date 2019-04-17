@@ -1,17 +1,16 @@
 <?php
-
 require_once('data.php');
 require_once('functions.php');
 ?>
 
 <?php 
 
-if(isset($lot_inf)){
-  $lot_name = $lot_inf['name'];
-  $lot_imgurl = $lot_inf['img_url'];
-  $lot_category = $lot_inf['category'];
-  $lot_description = $lot_inf['description'];
-  $lot_start_price = $lot_inf['start_price'];
+if(isset($lot_info)){
+  $lot_name = $lot_info['name'];
+  $lot_imgurl = $lot_info['img_url'];
+  $lot_category = $lot_info['category'];
+  $lot_description = $lot_info['description'];
+  $lot_start_price = $lot_info['start_price'];
   }
 else {
   print('НЕТ ТАКОГО ЛОТА');

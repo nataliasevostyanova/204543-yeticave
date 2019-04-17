@@ -37,7 +37,7 @@ require_once('functions.php');
 			}
 		  }
 		  if($key == 'lot-step'){
-			if(!isset($value) || gettype($value) !== integer){
+			if(!isset($value) || gettype($value) !== 'integer'){
 			$error = $dict['lot-step']. 'должен быть целым числом';
 			}
 		  }
@@ -68,7 +68,7 @@ require_once('functions.php');
 			        }
 			    } 
 			    else {
-			    	print($_FILES['photo2']['error']);
+			    	/*print($_FILES['photo2']['error']);*/
 			        $errors['image'] = 'Вы не загрузили изображение лота';
 				} 
 			    	
@@ -98,16 +98,11 @@ require_once('functions.php');
 					
 					// готовим переменные для безопасного запроса на добавление информации о лоте в БД 
 					$name = mysqli_real_escape_string($link, $lot['lot-name']);
-					//var_dump($name);
 					$description = mysqli_real_escape_string($link, $lot['message']);
-					//var_dump($description);
 					$cat_id;
-					//var_dump($cat_id);
 					$image_url ='img/'.$path;
 					$start_price = intval($lot['lot-rate']);
-					//var_dump($start_price);
 					$rate_step = intval($lot['lot-step']);
-					//var_dump($rate_step);
 					$user_id = '5';
 
 				   // запрос на добавление лота  в БД - без подготовленных выражений
@@ -121,16 +116,14 @@ require_once('functions.php');
 					   }
 					   else{
 					   	// получаем id добавленного лота
-					   	$last_lotid = mysqli_insert_id($link);
-					    //print('id оследней записи  лота: '.$last_lotid);
+					   	$last_id = (mysqli_insert_id($link));
+					    //var_dump($last_id);
 					    // перенаправляем пользователя на страницу добавленного лота
-					   header('Location: lot.php?id_lot=. $last_lotid;');
-					   die();
+					    header('Location: lot.php?id_lot =. $last_id;');
+					    die();
+					  
 				       }
 			     }//конец else 'если ошибок нет'
  }
 
-print($add_lot); 
-
-?>
-
+print($add_lot);
