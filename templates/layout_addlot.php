@@ -92,7 +92,7 @@
 
     <!-- Добавление изображения лота-->
      <div class="form__item form__item--file <?=isset($image) ? "form__item--uploaded" : "";?>">
-    <!--исходный <div class="form__item form__item--file"> --> <!-- form__item--uploaded -->
+   
         <label>Изображение</label>
         <div class="preview"> 
           <button class="preview__remove" name="preview_button" type="button">x</button>
