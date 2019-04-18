@@ -32,7 +32,7 @@ require_once('functions.php');
 			}
 		  }
 		  if($key == 'lot-rate'){
-			if(!isset($value) || gettype($value) !== integer){
+			if(!isset($value) || gettype($value) !== 'integer'){
 			$error = $dict['lot-rate']. 'должна быть целым числом';
 			}
 		  }
@@ -119,7 +119,7 @@ require_once('functions.php');
 					   	$last_id = (mysqli_insert_id($link));
 					    //var_dump($last_id);
 					    // перенаправляем пользователя на страницу добавленного лота
-					    header('Location: lot.php?id_lot =. $last_id;');
+					    header("Location: lot.php?id_lot=$last_id");
 					    die();
 					  
 				       }
