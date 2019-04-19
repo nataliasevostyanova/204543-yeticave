@@ -18,7 +18,7 @@ require_once('functions.php');
   <header class="main-header">
     <div class="main-header__container container">
       <h1 class="visually-hidden">YetiCave</h1>
-      <a class="main-header__logo" href="index.html">
+      <a class="main-header__logo" href="index.php">
         <img src="img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
       </a>
       <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
@@ -32,7 +32,7 @@ require_once('functions.php');
             <a href="sign-up.php">Регистрация</a>
           </li>
           <li class="user-menu__item">
-            <a href="login.html">Вход</a>
+            <a href="login.php">Вход</a>
           </li>
         </ul>
       </nav>
@@ -47,35 +47,35 @@ require_once('functions.php');
     </nav>
     <form class="form  container <?= isset($errors) ? 'form--invalid' : "";?>" action="sign_up.php" method="post" enctype="multipart/form-data"> <!-- form--invalid -->
       <h2>Регистрация нового аккаунта</h2>
-      
+      <!-- email -->
       <div class="form__item <?=isset($errors['email'])? 'form__item--invalid' : ""?>"> <!-- form__item--invalid -->
         <?php $value = isset($user_data['email']) ? $user_data['email'] : "";?> 
         <label for="email">E-mail*</label>
         <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=$value;?>" required>
         <span class="form__error">Введите e-mail</span>
       </div>
-    
+      <!-- пароль -->
       <div class="form__item <?=isset($errors['password'])? 'form__item--invalid' : ""?>">
         <?php $value = isset($user_data['password']) ? '**********' : "";?>
         <label for="password">Пароль*</label>
         <input id="password" type="text" name="password" placeholder="Введите пароль" value="<?=$value;?>" required>
         <span class="form__error">Введите пароль</span>
       </div>
- 
+      <!-- имя -->
       <div class="form__item <?=isset($errors['name'])? 'form__item--invalid' : ""?>">
         <?php $value = isset($user_data['name']) ? $user_data['name'] : "";?> 
         <label for="name">Имя*</label>
         <input id="name" type="text" name="name" placeholder="Введите имя" value="<?=$value;?>"required>
         <span class="form__error">Введите имя</span>
       </div>
-    
+    <!-- контактная информация -->
       <div class="form__item <?=isset($errors['message'])? 'form__item--invalid' : ""?>">
         <?php $value = isset($user_data['message']) ? $user_data['message'] : "";?>
         <label for="message">Контактные данные*</label>
         <textarea id="message" name="message" placeholder="Напишите как с вами связаться" required><?=$value;?></textarea>
         <span class="form__error">Напишите как с вами связаться</span>
       </div>
-   
+    <!-- автарка --> 
       <div class="form__item form__item--file form__item--last <?=isset($errors['image'])? 'form__item--invalid' : ""?>">
         <label>Аватар</label>
         <div class="preview">
@@ -89,7 +89,7 @@ require_once('functions.php');
           <label for="photo2">
             <span>+ Добавить</span>
           </label>
-        </div>х
+        </div>
       </div>
       <p>Поля, отмеченные *, обязательны для заполнения</p>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>

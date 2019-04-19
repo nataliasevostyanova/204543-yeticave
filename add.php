@@ -8,9 +8,9 @@ require_once('functions.php');
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			
     $lot = $_POST;
-		print('<pre> Что получили из формы:  ');
+		/*print('<pre> Что получили из формы:  ');
 		var_dump($_POST);
-		print('</pre>');
+		print('</pre>');*/
 	/*поля, необходимые для заполнения*/
 	$required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date']; 
 	/*заголовки для вывода ошибок пользователю*/
@@ -32,12 +32,12 @@ require_once('functions.php');
 			}
 		  }
 		  if($key == 'lot-rate'){
-			if(!isset($value) || gettype($value) !== integer){
+			if(!isset($value) || gettype($value) !== 'integer'){
 			$error = $dict['lot-rate']. 'должна быть целым числом';
 			}
 		  }
 		  if($key == 'lot-step'){
-			if(!isset($value) || gettype($value) !== integer){
+			if(!isset($value) || gettype($value) !== 'integer'){
 			$error = $dict['lot-step']. 'должен быть целым числом';
 			}
 		  }
@@ -47,19 +47,19 @@ require_once('functions.php');
 			}
 		  } // end проверки полей
 		}//end foreach
-            print('Что приходит в массиве $_FILES: ');
-			var_dump($_FILES['image']['name']);
-			var_dump($_FILES['image']['tmp_name']);
+            /*print('Что приходит в массиве $_FILES: ');
+			var_dump($_FILES['photo2']['name']);
+			var_dump($_FILES['photo2']['tmp_name']);*/
 			    
 			    // проверка данных о загружаемом файле изображения
-			    if($_FILES['image']['name']) {
-			        $tmp_name = $_FILES['image']['tmp_name'];
-			        $path = $_FILES['image']['name'];
+			    if($_FILES['photo2']['name']) {
+			        $tmp_name = $_FILES['photo2']['tmp_name'];
+			        $path = $_FILES['photo2']['name'];
 
 			        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-			        $file_type = finfo_file($finfo, $file_name);
+			        $file_type = finfo_file($finfo, $tmp_name);
 
-			        if($file_type !== "image/jpeg" || "image/png"){
+			        if($file_type !== "image/jpeg" && $file_type !== "image/png"){
 			        	$errors['image'] = 'Загрузите изображение в формате jpeg или png';
 			        }
 			        else{
@@ -68,13 +68,13 @@ require_once('functions.php');
 			        }
 			    } 
 			    else {
-			    	print($_FILES['image']['error']);
+			    	/*print($_FILES['photo2']['error']);*/
 			        $errors['image'] = 'Вы не загрузили изображение лота';
 				} 
 			    	
-			    	print('<pre> Ошибки заполнения:  ');
+			    	/*print('<pre> Ошибки заполнения:  ');
 					 var_dump($errors);
-					print('</pre>');
+					print('</pre>');*/
 							
 				 if(count($errors)){
 				    // если есть ошибки заполнения формы, то показываем форму с ошибками
@@ -86,32 +86,27 @@ require_once('functions.php');
 					
 					// готовим $lot['category'] для безопасного sql-запроса
 					$lot_cat = mysqli_real_escape_string($link, $lot['category']);
-					print('Категория:   '.$lot_cat.'   ');
+					
 
 					// получаем id категории нового лота - ту, которую выбрали в форме
 				    $sql = "SELECT id FROM cats WHERE category = '$lot_cat'"; 
 				    $result = mysqli_query($link, $sql);
 				    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 					foreach($row as $item){
-						$cat_id = $item['id'];
+						$cat_id = intval($item['id']);
 					}
 					
 					// готовим переменные для безопасного запроса на добавление информации о лоте в БД 
 					$name = mysqli_real_escape_string($link, $lot['lot-name']);
-					var_dump($name);
 					$description = mysqli_real_escape_string($link, $lot['message']);
-					var_dump($description);
 					$cat_id;
-					var_dump($cat_id);
-					$image_url = $path;
+					$image_url ='img/'.$path;
 					$start_price = intval($lot['lot-rate']);
-					var_dump($start_price);
 					$rate_step = intval($lot['lot-step']);
-					var_dump($rate_step);
 					$user_id = '5';
 
 				   // запрос на добавление лота  в БД - без подготовленных выражений
-				   $sql = "INSERT INTO lots (name, description, cat_id, img_url, start_price, rate_step, user_id) VALUES ('$name', '$description', '$image', $cat_id', '$start_price', '$rate_step', '$user_id')";
+				   $sql = "INSERT INTO lots (name, description, cat_id, img_url, start_price, rate_step, user_id) VALUES ('$name', '$description', '$cat_id', '$image_url', '$start_price', '$rate_step', '$user_id')";
 				   $result_add = mysqli_query($link, $sql);
 				   
 				   //проверяем результат запроса на добавление лота в БД
@@ -121,16 +116,14 @@ require_once('functions.php');
 					   }
 					   else{
 					   	// получаем id добавленного лота
-					   	$last_lotid = mysqli_insert_id($link);
-					    print('id оследней записи  лота: '.$last_lotid);
+					   	$last_id = (mysqli_insert_id($link));
+					    //var_dump($last_id);
 					    // перенаправляем пользователя на страницу добавленного лота
-					   	header('Location: lot.php?id_lot=. $last_lotid;');
+					    header("Location: lot.php?id_lot=$last_id");
 					    die();
+					  
 				       }
 			     }//конец else 'если ошибок нет'
-   
-    print($add_lot); 
-}
+ }
 
-?>
-
+print($add_lot);

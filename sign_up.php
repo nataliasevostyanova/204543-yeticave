@@ -26,32 +26,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
 // валидация заполненных полей
-
-    // проверяем имя пользователя на уникальность
-    if(!isset($user_data['name'])){
-       print('Введите имя пользователя');
-       $errors['name'] = 'Введите имя пользователя';
-    	}
-    	else{
-    	// Если имя пользователя получено, подготовим его для запроса
-    	$user_name = mysqli_real_escape_string($link, $user_data['name']); 
-    	// запрос в БД: есть  ли уже в таблице users такое же имя пользователя
-    	/*$sql = 'SELECT name FROM users WHERE name = ?';
-    	$stmt = mysqli_prepare($link, $sql);
-        mysqli_stmt_bind_param($stmt, 's', $user_name);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $result = mysqli_fetch_row($result);*/
-
-        $sql = 'SELECT name FROM users WHERE name = $user_name';
-        $result = mysqli_query($link, $sql);
-
-            if($result === $user_name){
-            	print('Это имя уже занято');
-            	$errors['name'] = 'Это имя уже занято';
-            }
-        }// end проверки unique user_name
-
     // проверяем формат полученного email: 
     if(!filter_var($user_data['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Введите корректный e-mail';
@@ -75,24 +49,28 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }//end проверки email
 
     //проверяем результат загрузки изображения аватарки
+
+    /*print('<pre> Про изображение:  ');
+	var_dump($_FILES);
+	print('</pre>');*/
 	if($_FILES['photo2']['name']) {
-	        $tmp_name = $_FILES['photo2']['tmp_name'];
-	        $path = $_FILES['photo2']['name'];
+			        $tmp_name = $_FILES['photo2']['tmp_name'];
+			        $path = $_FILES['photo2']['name'];
 
-	        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-	        $file_type = finfo_file($finfo, $file_name);
+			        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+			        $file_type = finfo_file($finfo, $tmp_name);
 
-	        if($file_type !== "image/jpeg" && $file_type !== "image/png"){
-	        	$errors['image'] = 'Загрузите изображение в формате jpeg или png';
-	        }
-	        else{
-	        	move_uploaded_file($tmp_name, 'img/'.$path);
-	        	$user_data['img_url'] = $path;
-	        }
-	} 
+			        if($file_type !== "image/jpeg" && $file_type !== "image/png"){
+			        	$errors['image'] = 'Загрузите изображение в формате jpeg или png';
+			        }
+			        else{
+			        	move_uploaded_file($tmp_name, 'img/'.$path);
+			        	$user_data['avatar_url'] = 'img/'.$path;
+			        }
+			      }
+	
 	else {
-			print($_FILES['photo2']['error']);
-			$errors['image'] = 'Вы не загрузили изображение лота';
+		$errors['image'] = 'Вы не загрузили изображение лота';
 	} //end проверки загрузки img 
 
 // если есть ошибки при заполнении формы, показываем шаблон с ошибками
@@ -111,7 +89,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$user_email;
 		$password = password_hash($user_data['password'], PASSWORD_DEFAULT); // хешируем пароль
         $user_contact = mysqli_real_escape_string($link, $user_data['message']); // экранируем спецсимволы в контактной информации
-        $avatar_url = $user_data['img_url'];  
+        $avatar_url = $user_data['avatar_url'];  
 		
 
 		$sql = 'INSERT INTO users (
@@ -126,8 +104,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
-        if($result) {
-          // сообщаем пользователю об успешной регистрации
+        if(!$result){
+		$error = mysqli_error($link);
+		print('Ошибка MySQL: '.$error);
+		}
+		else{ 
+        // сообщаем пользователю об успешной регистрации
         	header("Location: page/success_reg.html");
         	die();
         }

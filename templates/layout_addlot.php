@@ -41,17 +41,7 @@
     <!-- menu -->
     <nav class="nav">
       <ul class="nav__list container">
-        <?php               
-          $index = 0;
-          $num = count($cats);
-
-            while($index < $num): ?>
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">
-                  <?=$cats[$index];?>
-                </a>
-                <?php $index++; ?></li>
-            <?endwhile?>
+        <?php require_once('cat_menu.php');?>
       </ul>
     </nav>
 <!-- начало формы-->
