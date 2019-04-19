@@ -36,12 +36,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     	// Если имя пользователя получено, подготовим его для запроса
     	$user_name = mysqli_real_escape_string($link, $user_data['name']); 
     	// запрос в БД: есть  ли уже в таблице users такое же имя пользователя
-    	$sql = 'SELECT name FROM users WHERE name = ?';
+    	/*$sql = 'SELECT name FROM users WHERE name = ?';
     	$stmt = mysqli_prepare($link, $sql);
         mysqli_stmt_bind_param($stmt, 's', $user_name);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        $result = mysqli_fetch_row($result);
+        $result = mysqli_fetch_row($result);*/
+
+        $sql = 'SELECT name FROM users WHERE name = $user_name';
+        $result = mysqli_query($link, $sql);
 
             if($result === $user_name){
             	print('Это имя уже занято');
