@@ -1,7 +1,6 @@
 <?php  
 require_once ('data.php');
 require_once('functions.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +8,8 @@ require_once('functions.php');
 <head>
   <meta charset="UTF-8">
   <title>Регистрация</title>
-  <link href="../css/normalize.min.css" rel="stylesheet">
-  <link href="../css/style.css" rel="stylesheet">
+  <link href="css/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -26,11 +25,11 @@ require_once('functions.php');
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>
+      <a class="main-header__add-lot button" href="add-lot.php">Добавить лот</a>
       <nav class="user-menu">
         <ul class="user-menu__list">
           <li class="user-menu__item">
-            <a href="sign-up.html">Регистрация</a>
+            <a href="sign-up.php">Регистрация</a>
           </li>
           <li class="user-menu__item">
             <a href="login.html">Вход</a>
@@ -46,34 +45,38 @@ require_once('functions.php');
        <?php require_once('cat_menu.php'); ?>
       </ul>
     </nav>
-    <form class="form container" action="sign_up.php" method="post" enctype="multipart/form-data"> <!-- form--invalid -->
+    <form class="form  container <?= isset($errors) ? 'form--invalid' : "";?>" action="sign_up.php" method="post" enctype="multipart/form-data"> <!-- form--invalid -->
       <h2>Регистрация нового аккаунта</h2>
-      <div class="form__item <?=isset($errors)? 'form__item--invalid' : "";?>"> <!-- form__item--invalid -->
-    //e-mail name="email"
+      
+      <div class="form__item <?=isset($errors['email'])? 'form__item--invalid' : ""?>"> <!-- form__item--invalid -->
+        <?php $value = isset($user_data['email']) ? $user_data['email'] : "";?> 
         <label for="email">E-mail*</label>
-        <input id="email" type="text" name="email" placeholder="Введите e-mail" required>
+        <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=$value;?>" required>
         <span class="form__error">Введите e-mail</span>
       </div>
-    // пароль  name="password"
-      <div class="form__item">
+    
+      <div class="form__item <?=isset($errors['password'])? 'form__item--invalid' : ""?>">
+        <?php $value = isset($user_data['password']) ? '**********' : "";?>
         <label for="password">Пароль*</label>
-        <input id="password" type="text" name="password" placeholder="Введите пароль" required>
+        <input id="password" type="text" name="password" placeholder="Введите пароль" value="<?=$value;?>" required>
         <span class="form__error">Введите пароль</span>
       </div>
-    // имя пользователя name="name"
-      <div class="form__item">
+ 
+      <div class="form__item <?=isset($errors['name'])? 'form__item--invalid' : ""?>">
+        <?php $value = isset($user_data['name']) ? $user_data['name'] : "";?> 
         <label for="name">Имя*</label>
-        <input id="name" type="text" name="name" placeholder="Введите имя" required>
+        <input id="name" type="text" name="name" placeholder="Введите имя" value="<?=$value;?>"required>
         <span class="form__error">Введите имя</span>
       </div>
-    // контактные данные name="message"
-      <div class="form__item">
+    
+      <div class="form__item <?=isset($errors['message'])? 'form__item--invalid' : ""?>">
+        <?php $value = isset($user_data['message']) ? $user_data['message'] : "";?>
         <label for="message">Контактные данные*</label>
-        <textarea id="message" name="message" placeholder="Напишите как с вами связаться" required></textarea>
+        <textarea id="message" name="message" placeholder="Напишите как с вами связаться" required><?=$value;?></textarea>
         <span class="form__error">Напишите как с вами связаться</span>
       </div>
-    // добавление аватарки name="photo2"
-      <div class="form__item form__item--file form__item--last">
+   
+      <div class="form__item form__item--file form__item--last <?=isset($errors['image'])? 'form__item--invalid' : ""?>">
         <label>Аватар</label>
         <div class="preview">
           <button class="preview__remove" type="button">x</button>
@@ -88,7 +91,7 @@ require_once('functions.php');
           </label>
         </div>х
       </div>
-    // сообщение об ошибка
+      <p>Поля, отмеченные *, обязательны для заполнения</p>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
       <button type="submit" class="button">Зарегистрироваться</button>
       <a class="text-link" href="#">Уже есть аккаунт</a>
