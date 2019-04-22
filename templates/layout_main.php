@@ -4,7 +4,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title><?=$title_main?></title>
+  <title><?=$page_title;?></title>
   <link href="css/normalize.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -16,19 +16,31 @@
     <div class="main-header__container container">
       <h1 class="visually-hidden">YetiCave</h1>
       <a class="main-header__logo">
-        <img src="img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
+        <img src="img/logo.png" width="160" height="39" alt="Логотип компании YetiCave">
       </a>
       <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>
-      <nav class="user-menu">
+      <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
+       <nav class="user-menu">
+        <!-- блок меню пользователя -->
+        <?php if($user_name): ?>
         <div class="user-menu__logged">
-          <p>Наталия</p>
-          <a href="login.html">Выйти</a>
+            <p><?=strip_tags($user_name);?></p>
+            <a href="logout.php">Выход</a>
         </div>
-      </nav>
+        <?php else: ?>
+         <ul class="user-menu__list">
+            <li class="user-menu__item">
+                <a <?=$page_title !== 'Регистрация - YetiCave' ? 'href="sign_up.php"' : "";?>>Регистрация</a>
+            </li>
+            <li class="user-menu__item">
+                <a <?=$page_title !== 'Вход - YetiCave' ? 'href="login.php"' : "";?>>Вход</a>
+            </li>
+        </ul>
+        <?php endif; ?>
+        </nav>
     </div>
   </header>
 
@@ -41,19 +53,8 @@
 	<!-- bottom menu -->
 	  <nav class="nav">
 	    <ul class="nav__list container">
-	    <?php               
-      $index = 0;
-      $num = count($cats);
-
-         while($index < $num): ?>
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">
-                  <?=$cats[$index];?>
-                </a>
-                <?php $index++; ?></li>
-         <?endwhile?>
-
-	    </ul>
+	    <?php require_once('cat_menu.php'); ?>              
+  	  </ul>
 	  </nav>
 	  <div class="main-footer__bottom container">
 	  	<?php require_once('footer_bottom.php'); ?>

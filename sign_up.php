@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		// показываем заполненный правильно шаблон
 		$add_user = include_template('layout_signup.php', ['cats' => $cats, 'user_data' => $user_data]);
 		// готовим данные для запроса на добавление нового пользователя в таблицу users 
-		$user_name;
+		$user_name = mysqli_real_escape_string($link, $user_data['name']); // экранируем спецсимволы в user_name
 		$user_email;
 		$password = password_hash($user_data['password'], PASSWORD_DEFAULT); // хешируем пароль
         $user_contact = mysqli_real_escape_string($link, $user_data['message']); // экранируем спецсимволы в контактной информации
@@ -104,14 +104,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
+        
         if(!$result){
 		$error = mysqli_error($link);
 		print('Ошибка MySQL: '.$error);
 		}
 		else{ 
-        // сообщаем пользователю об успешной регистрации
-        	header("Location: page/success_reg.html");
-        	die();
+        // сообщаем пользователю об успешной регистрации  ---> переделать показ шаблона страницы с сообщение
+        /* $add_user = include_template('anons_content.php',[$page_title = 'Успешная регистрация', $header2 = 'Аккаунт зарегистрирован!', $anons_text = 'Ваша регистрация прошла успешно.']);   ПЕРЕДЕЛАТЬ*/
+         
+
         }
  	}
 
