@@ -22,21 +22,21 @@
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
+      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>">Добавить лот</a>
+      <?php if($_SESSION['user_name']):?>
        <nav class="user-menu">
-        <!-- блок меню пользователя -->
-        <?php if($user_name): ?>
         <div class="user-menu__logged">
-            <p><?=strip_tags($user_name);?></p>
+            <p><?=strip_tags($_SESSION['user_name']);?></p>
+            <a href="my_lots.php">Мои ставки</a>
             <a href="logout.php">Выход</a>
         </div>
         <?php else: ?>
          <ul class="user-menu__list">
             <li class="user-menu__item">
-                <a <?=$page_title !== 'Регистрация - YetiCave' ? 'href="sign_up.php"' : "";?>>Регистрация</a>
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'sign_up.php'?>">Регистрация</a>
             </li>
             <li class="user-menu__item">
-                <a <?=$page_title !== 'Вход - YetiCave' ? 'href="login.php"' : "";?>>Вход</a>
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'login.php'?>">Вход</a>
             </li>
         </ul>
         <?php endif; ?>

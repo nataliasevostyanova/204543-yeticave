@@ -26,17 +26,25 @@ require_once('functions.php');
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
-      <nav class="user-menu">
-        <ul class="user-menu__list">
-          <li class="user-menu__item">
-            <a href="sign_up.php">Регистрация</a>
-          </li>
-          <li class="user-menu__item">
-            <a href="login.php">Вход</a>
-          </li>
+      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>">Добавить лот</a>
+      <?php if($_SESSION['user_name']):?>
+       <nav class="user-menu">
+        <div class="user-menu__logged">
+            <p><?=strip_tags($_SESSION['user_name']);?></p>
+            <a href="my_lots.php">Мои ставки</a>
+            <a href="logout.php">Выход</a>
+        </div>
+        <?php else: ?>
+         <ul class="user-menu__list">
+            <li class="user-menu__item">
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'sign_up.php'?>">Регистрация</a>
+            </li>
+            <li class="user-menu__item">
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'login.php'?>">Вход</a>
+            </li>
         </ul>
-      </nav>
+        <?php endif; ?>
+        </nav>
     </div>
   </header>
 

@@ -1,6 +1,7 @@
-<?php 
-  require_once('data.php');
-  require_once('functions.php');
+<?php
+session_start(); 
+require_once('data.php');
+require_once('functions.php');
 
 //загружаем пустую форму для регистрации  пользователя
   $add_user = include_template('layout_signup.php', ['cats' => $cats]); 
@@ -103,16 +104,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         mysqli_stmt_bind_param($stmt, 'sssss', $user_name, $user_email, $password, $user_contact, $avatar_url);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        
-        
+
         if(!$result){
 		$error = mysqli_error($link);
 		print('Ошибка MySQL: '.$error);
 		}
-		else{ 
+		else{
+        print('Регистрация прошла успешно!'); 
         // сообщаем пользователю об успешной регистрации  ---> переделать показ шаблона страницы с сообщение
+
         /* $add_user = include_template('anons_content.php',[$page_title = 'Успешная регистрация', $header2 = 'Аккаунт зарегистрирован!', $anons_text = 'Ваша регистрация прошла успешно.']);   ПЕРЕДЕЛАТЬ*/
-         
+        /* header("Location: pages/success_reg.html");*/
 
         }
  	}

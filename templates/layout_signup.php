@@ -25,17 +25,25 @@ require_once('functions.php');
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
-      <nav class="user-menu">
-        <ul class="user-menu__list">
-          <li class="user-menu__item">
-            <a href="sign-up.php">Регистрация</a>
-          </li>
-          <li class="user-menu__item">
-            <a href="login.php">Вход</a>
-          </li>
+      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>">Добавить лот</a>
+      <?php if($_SESSION['user_name']):?>
+       <nav class="user-menu">
+        <div class="user-menu__logged">
+            <p><?=strip_tags($_SESSION['user_name']);?></p>
+            <a href="my_lots.php">Мои ставки</a>
+            <a href="logout.php">Выход</a>
+        </div>
+        <?php else: ?>
+         <ul class="user-menu__list">
+            <li class="user-menu__item">
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'sign_up.php'?>">Регистрация</a>
+            </li>
+            <li class="user-menu__item">
+                <a href="<?=isset($_SESSION['user_name']) ? "" : 'login.php'?>">Вход</a>
+            </li>
         </ul>
-      </nav>
+        <?php endif; ?>
+        </nav>
     </div>
   </header>
 
@@ -52,21 +60,27 @@ require_once('functions.php');
         <?php $value = isset($user_data['email']) ? $user_data['email'] : "";?> 
         <label for="email">E-mail*</label>
         <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=$value;?>" required>
-        <span class="form__error">Введите e-mail</span>
+        <?php if(isset($errors['email'])): ?>
+        <span class="form__error"><?=$errors['email'];?></span>
+        <?php endif; ?>
       </div>
       <!-- пароль -->
       <div class="form__item <?=isset($errors['password'])? 'form__item--invalid' : ""?>">
         <?php $value = isset($user_data['password']) ? '**********' : "";?>
         <label for="password">Пароль*</label>
         <input id="password" type="text" name="password" placeholder="Введите пароль" value="<?=$value;?>" required>
-        <span class="form__error">Введите пароль</span>
+        <?php if(isset($errors['password'])): ?>
+        <span class="form__error"><?=$errors['password'];?></span>
+        <?php endif; ?>
       </div>
       <!-- имя -->
       <div class="form__item <?=isset($errors['name'])? 'form__item--invalid' : ""?>">
         <?php $value = isset($user_data['name']) ? $user_data['name'] : "";?> 
         <label for="name">Имя*</label>
         <input id="name" type="text" name="name" placeholder="Введите имя" value="<?=$value;?>"required>
-        <span class="form__error">Введите имя</span>
+        <?php if(isset($errors['name'])): ?>
+        <span class="form__error"><?=$errors['name'];?></span>
+        <?php endif; ?>
       </div>
     <!-- контактная информация -->
       <div class="form__item <?=isset($errors['message'])? 'form__item--invalid' : ""?>">

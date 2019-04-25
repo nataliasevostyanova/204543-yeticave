@@ -1,4 +1,10 @@
-<?php 
+<?php
+session_start(); 
+if (!isset($_SESSION['user'])) {
+header("Location: page/403.html");
+exit();
+}
+
 require_once ('data.php');
 require_once('functions.php');
 
