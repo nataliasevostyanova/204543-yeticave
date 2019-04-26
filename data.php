@@ -1,6 +1,5 @@
 <?php
 require_once('db_connect.php');
-
 /*последние 6 лотов  - получаем массив $staff*/
 $sql = "SELECT id_lot, creation_date, name, description, img_url, start_price, cat_id, category FROM lots l 
 JOIN cats c
@@ -11,7 +10,6 @@ $result = mysqli_query($link, $sql);
               $error = mysqli_error($link);
               print("Ошибка MySQL: ".$error);
             }
-
 $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $staff = $row;
 /*запрос на информацию о категориях*/

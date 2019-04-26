@@ -8,10 +8,11 @@ require_once('functions.php');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	// данные пользователя, полученные при заполненени формы входа пишем в массив $login
-   print('<pre> Что получили из формы:  ');
+     /*print('<pre> Что получили из формы:  ');
 	 var_dump($_POST);
-	 print('</pre>');
-	 $login = $_POST;
+	 print('</pre>');*/
+
+	$login = $_POST;
     // массив с сообщениями об ошибках проверки
     $errors = [];
     // массив с именами обязательных полей
@@ -39,49 +40,41 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+ 		 /*print('<pre> Что получили из запроса к табл. users:  ');
+		 var_dump($row);
+		 print('</pre>');*/
 
-        foreach ($result as $key => $value){
-		$res[] = $result;
-		}
- 		 print('<pre> Что получили из запроса к табл. users:  ');
-		 var_dump($res);
-		 print('</pre>');
-
-        if(!$res) {
+        if(!$row) {
           $errors['email'] = 'Аккаунт с таким email не зарегистрирован.';
           //print($errors['email']);
         }
         else {
         // если email найден в БД, записываем имя пользователя и проверяем пароль
-          $user_name = $res['user_name'];
-         // var_dump($res['user_name']);
-         
-          //хешируем пароль, полученный из формы входа 
-          /*$pass_hash = password_hash($login['password'], PASSWORD_DEFAULT);
-                 /*print('<pre> хеш пароля из базы: ');
-                 var_dump($pass_hash);
-				 print('</pre>');*/
-         
-          //сравниваем пароль, введенный в форму входа, с хешем пароля, полученным  из users
-			if(!password_verify($login['password'], $res['password'])){
+          $user_name = $row[0]['user_name'];
+         //var_dump($row[0]['user_name']);
+              
+         //сравниваем пароль, введенный в форму входа, с хешем пароля, полученным  из users
+			if(!password_verify($login['password'], $row[0]['password'])){
 	        $errors['password'] = 'Вы ввели неверный пароль';
-	 			/* print('<pre> Ошибки входа:  ');
+	 			/*print('<pre> Ошибки входа:  ');
 				 var_dump($errors);
 				 print('</pre>');*/
 	      //показываем страницу входа с ошибками заполнения 
 	        $auth_page = include_template('layout_login.php', ['cats' => $cats,'errors' => $errors]);	
-	            }	          
+	        }	          
 	      //если хеши введенного пароля и пароля из базы совпали
 	        else {
 	           	//записываем в $_SESSION имя и email пользователя
-	            
-	         	/*$_SESSION['user_name'] = $user_name;
+	            $_SESSION['user_name'] = $user_name;
 	            $_SESSION['email'] = $login['email'];
-	             header('Location: pages/success_reg.html');*/
-	            print('Успешный вход!');	           
+
+	           //print('Имя пользователя:  '.$_SESSION['user_name']);
+	            header("Location: ./");
+	            die();       
                }
        } 
-   }    
-}// end if($_SERVER['REQUEST_...*/
+      
+}// end if($_SERVER['REQUEST_...
 print($auth_page);

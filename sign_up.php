@@ -109,16 +109,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$error = mysqli_error($link);
 		print('Ошибка MySQL: '.$error);
 		}
-		else{
-        print('Регистрация прошла успешно!'); 
-        // сообщаем пользователю об успешной регистрации  ---> переделать показ шаблона страницы с сообщение
-
-        /* $add_user = include_template('anons_content.php',[$page_title = 'Успешная регистрация', $header2 = 'Аккаунт зарегистрирован!', $anons_text = 'Ваша регистрация прошла успешно.']);   ПЕРЕДЕЛАТЬ*/
-        /* header("Location: pages/success_reg.html");*/
-
+		else {
+        // сообщаем пользователю об успешной регистрации 
+       header("Location: pages/success_reg.html");
+       die();
         }
  	}
-
 }//end of if($_SERVER[..
-
 print($add_user);

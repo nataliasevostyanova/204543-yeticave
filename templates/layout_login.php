@@ -2,8 +2,6 @@
 require_once ('data.php');
 require_once('functions.php');
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,7 +13,6 @@ require_once('functions.php');
 <body>
 
 <div class="page-wrapper">
-
   <header class="main-header">
     <div class="main-header__container container">
       <h1 class="visually-hidden">YetiCave</h1>
@@ -26,7 +23,7 @@ require_once('functions.php');
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>">Добавить лот</a>
+      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>"><?=isset($_SESSION['user_name']) ? 'Добавить лот' : "" ?></a>
       <?php if($_SESSION['user_name']):?>
        <nav class="user-menu">
         <div class="user-menu__logged">

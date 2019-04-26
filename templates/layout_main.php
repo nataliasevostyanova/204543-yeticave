@@ -22,7 +22,7 @@
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>
-      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>">Добавить лот</a>
+      <a class="main-header__add-lot button" href="<?=isset($_SESSION['user_name']) ? 'add.php' : "" ?>"><?=isset($_SESSION['user_name']) ? 'Добавить лот' : "" ?></a>
       <?php if($_SESSION['user_name']):?>
        <nav class="user-menu">
         <div class="user-menu__logged">

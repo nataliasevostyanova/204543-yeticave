@@ -1,7 +1,7 @@
 <?php
 session_start(); 
-if (!isset($_SESSION['user'])) {
-header("Location: page/403.html");
+if (!isset($_SESSION['user_name'])) {
+header("Location: pages/403.html");
 exit();
 }
 
