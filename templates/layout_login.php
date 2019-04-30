@@ -19,7 +19,7 @@ require_once('functions.php');
       <a class="main-header__logo" href="index.php">
         <img src="img/logo.png" width="160" height="39" alt="Логотип компании YetiCave">
       </a>
-      <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
+      <form class="main-header__search" method="get" action="seach.php">
         <input type="search" name="search" placeholder="Поиск лота">
         <input class="main-header__search-btn" type="submit" name="find" value="Найти">
       </form>

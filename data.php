@@ -12,6 +12,7 @@ $result = mysqli_query($link, $sql);
             }
 $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $staff = $row;
+
 /*запрос на информацию о категориях*/
 $sql = "SELECT category FROM cats;";
 $result = mysqli_query($link, $sql);

@@ -1,8 +1,13 @@
+<?php
+session_start();
+require_once ('data.php');
+require_once('functions.php');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Успешная регистрация</title>
+    <title><?= $page_title;?></title>
     <link href="../css/normalize.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
@@ -16,7 +21,7 @@
             <a class="main-header__logo" href="index.php">
                 <img src="img/logo.png" width="160" height="39" alt="Логотип компании YetiCave">
             </a>
-            <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
+            <form class="main-header__search" method="get" action="search.php">
                 <input type="search" name="search" placeholder="Поиск лота">
                 <input class="main-header__search-btn" type="submit" name="find" value="Найти">
             </form>
@@ -41,8 +46,8 @@
             </ul>
         </nav>
         <section class="lot-item container">
-            <h2>Аккаунт создан!</h2>
-            <p>Вы успешно зарегистрировались на сайте www.yeticave_pro.shop</p>
+            <h2><?= $h2; ?></h2>
+            <p><?= $anons_text; ?></p>
         </section> 
     </main>
 

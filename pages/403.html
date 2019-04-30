@@ -36,12 +36,22 @@
 
     <main>
         <nav class="nav">
+     <!-- Orobinski:
+       <ul class="promo__list">
+        <?php
+            foreach($categories as $value):
+        ?>
+        <li class="promo__item promo__item--boards">
+            <a class="promo__link" href="./all-lots.php?id=<?=$value['id'];?>"><?=htmlspecialchars($value['categories']);?></a>
+        </li>
+        <?php endforeach; ?>
+       </ul> -->
             <ul class="nav__list container">
                 <li class="nav__item">
                     <a href="all-lots.html">Доски и лыжи</a>
                 </li>
                 <li class="nav__item">
-                    <a href="all-lots.html">Крепления</a>
+                    <a href="all-lots.html" >Крепления</a>
                 </li>
                 <li class="nav__item">
                     <a href="all-lots.html">Ботинки</a>
