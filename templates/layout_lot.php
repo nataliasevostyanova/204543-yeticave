@@ -51,26 +51,7 @@ require_once('functions.php');
   <main>
 <!-- header menu -->
     <nav class="nav">
-      <ul class="nav__list container">
-        <li class="nav__item">
-          <a href="all-lots.html">Доски и лыжи</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Крепления</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Ботинки</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Одежда</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Инструменты</a>
-        </li>
-        <li class="nav__item">
-          <a href="all-lots.html">Разное</a>
-        </li>
-      </ul>
+     <?php require_once('cat_menu.php');?>
     </nav>
 <!-- контейнер лота -->
       <section class="lot-item container">
@@ -84,18 +65,7 @@ require_once('functions.php');
   <!-- bottom menu -->
     <nav class="nav">
       <ul class="nav__list container">
-      <?php               
-      $index = 0;
-      $num = count($cats);
-
-         while($index < $num): ?>
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">
-                  <?=$cats[$index];?>
-                </a>
-                <?php $index++; ?></li>
-         <?endwhile?>
-
+      <?php require_once('cat_menu.php'); ?>
       </ul>
     </nav>
     <div class="main-footer__bottom container">
@@ -105,9 +75,3 @@ require_once('functions.php');
 
 </body>
 </html>
-
-
-
-
-
-

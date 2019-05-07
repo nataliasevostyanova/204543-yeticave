@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     else { 
         $email = mysqli_real_escape_string($link, $login['email']);
         // готовим запрос: существует ли уже такой email в таблице users 
-        //и заодно запросим имя пользователя user_name
+        //и заодно запросим имя и id пользователя user_name
         $sql = 'SELECT * FROM users WHERE email = ? ';
         $stmt = mysqli_prepare($link, $sql);
         mysqli_stmt_bind_param($stmt, 's', $email);
@@ -51,8 +51,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           //print($errors['email']);
         }
         else {
-        // если email найден в БД, записываем имя пользователя и проверяем пароль
+        // если email найден в БД, записываем имя и id пользователя и проверяем пароль
           $user_name = $row[0]['user_name'];
+          $user_id = $row[0]['id'];
          //var_dump($row[0]['user_name']);
               
          //сравниваем пароль, введенный в форму входа, с хешем пароля, полученным  из users
@@ -69,6 +70,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	           	//записываем в $_SESSION имя и email пользователя
 	            $_SESSION['user_name'] = $user_name;
 	            $_SESSION['email'] = $login['email'];
+	            $_SESSION['id'] =  $user_id;
 
 	           //print('Имя пользователя:  '.$_SESSION['user_name']);
 	            header("Location: ./");

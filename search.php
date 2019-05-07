@@ -36,6 +36,13 @@ else {
 
     // если в результате поиска найдены лоты, то
   if(count($lot)){
+  	$cur_page = $_GET['page'] ?? 1;
+  	$page_items = 3;
+    $pages_total = ciel(count($lot)/$page_items);
+    $offset = ($cur_page - 1)*$page_items; 
+
+    $pages = range(1, $pages_total);  
+
     // показываем страницу с найденными лотами
   $search_page = include_template('layout_search.php', ['cats' => $cats, 'search_h2' => $search_h2, 'lot' => $lot]);
   }

@@ -1,10 +1,6 @@
 <?php
-
 require_once('data.php');
 require_once('functions.php');
-?>
-
-<?php 
 
 if(isset($lot_inf)){
   $lot_name = $lot_inf['name'];
@@ -12,9 +8,11 @@ if(isset($lot_inf)){
   $lot_category = $lot_inf['category'];
   $lot_description = $lot_inf['description'];
   $lot_start_price = $lot_inf['start_price'];
+  $end_time = htmlspecialchars($lot_inf['end_time']);
+  //print($end_time);
   }
 else {
-  print('НЕТ ТАКОГО ЛОТА');
+  header("Location: pages/404.html");
   }
 ?>
 
@@ -30,7 +28,7 @@ else {
         <div class="lot-item__right">
           <div class="lot-item__state">
             <div class="lot-item__timer timer">
-             <?=endTime();?>
+             <?= endTime($end_time); ?>
             </div>
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">

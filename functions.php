@@ -33,16 +33,24 @@ function filt_data($inpdata) {
 
 }
 
+/** функция для вычисления времени жизни лота
+  * принимает значение даты в формате Y-m-d
+  * возвращает число часов и минут 
+  */
 function endTime(){
-      date_default_timezone_set('Europe/Moscow');
-      $just_t = date('U');
-      $end_tu = strtotime("tomorrow midnight");
-      
-      $diff_t = $end_tu -$just_t;
-      $lost_tH = $diff_t/3600;
-      $lost_tHH = floor($lost_tH);
-      $lost_tM = floor(($diff_t%3600)/60);
-       return ($lost_tHH.' час. '.$lost_tM.' мин.');
+   date_default_timezone_set('Europe/Moscow'); 
+    
+    print('end_time: '.$end_time);
+    $end_date = date("d-m-Y H:i:s", strtotime($end_time));
+    print('end_date: '.$end_date);
+    $just_t = strtotime('now');
+    $end_tu = strtotime($end_date);
+    
+    $diff_t = $end_tu - $just_t;
+    $lost_tD = floor($diff_t/86400); // осталось целых суток
+    $lost_tH =  floor(($diff_t - $lost_tD*86400)/3600);// осталось целых часов
+    $lost_tM = floor(($diff_t - ($lost_tD*86400 + $lost_tH*3600))/60);// осталось целых минут   
+    print ('Лот активен: '.$lost_tD.' дней '.$lost_tH.' час. '.$lost_tM.' мин.' );
     }
 
 /** функция для перемещения файла изображения из временной папки в рабочую*/   
